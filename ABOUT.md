@@ -1,4 +1,4 @@
-`Kriet` is a server where you can build, fight, and do whatever you want, with complete freedom and more. (`1.20.1` - `forge`)(`kriet.duckdns.org:25605`)
+`Kriet` is a server where you can build, fight, and do whatever you want, with complete freedom and more. (`1.20.1` - `forge`)(`kriet.duckdns.org:25566`)
 
 ## History
 ![happy time](images/happy_time.png)

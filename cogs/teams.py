@@ -19,6 +19,11 @@ class teams(commands.Cog):
             return None
         with open('requests.json', 'r') as fileIO_r:
             json_data: list[dict] = json.load(fileIO_r)
+            for ite_, account in enumerate(json_data):
+                if inter.author.name == account["discord_info"]["name"] or inter.author.display_name == account["discord_info"]["display_name"]:
+                    await inter.response.send_message("Your account is already recorded in the database")
+                    logging.getLogger('kriet').debug(f"Account \"{inter.author.name}\" account is already recorded")
+                    return None
             json_data.append({
                 "minecraft_nickname": minecraft_nickname,
                 "can_join": False,
@@ -26,8 +31,10 @@ class teams(commands.Cog):
                     "nick": inter.author.nick,
                     "name": inter.author.name,
                     "display_name": inter.author.display_name}})
+        logging.getLogger('kriet').debug(f"Account \"{inter.author.name}\" dumping to account database")
         with open('requests.json', 'w') as fileIO_w:
             json.dump(json_data, fileIO_w, indent=4)
+        logging.getLogger('kriet').debug(f"Account \"{inter.author.name}\" has been dumped to account database")
         await inter.response.send_message("Your request will be sent to moderation. Please wait until it is accepted for you to check, enter `/whitelist_status`")
         
     @commands.slash_command(
